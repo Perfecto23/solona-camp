@@ -24,18 +24,18 @@ pub fn calculate_out(current_x: u64, current_y: u64, input_amount: u64) -> Resul
     let current_y_u128 = current_y as u128;
     let k = current_x_u128
         .checked_mul(current_y_u128)
-        .ok_or(ErrorCode::Overflow);
+        .ok_or(ErrorCode::Overflow)?;
 
     // 先去计算新的x
     let new_x = current_x
         .checked_add(input_amount)
-        .ok_or(ErrorCode::Overflow);
+        .ok_or(ErrorCode::Overflow)? as u128;
 
     // 再计算新的y
-    let new_y = k.checked_div(new_x).ok_or(ErrorCode::Overflow);
+    let new_y = k.checked_div(new_x).ok_or(ErrorCode::Overflow)?;
 
     // 兑换的y
-    let out = current_y_u128.checked_sub(new_y).ok_or(ErrorCode::Overflow);
+    let out = current_y_u128.checked_sub(new_y).ok_or(ErrorCode::Overflow)?;
 
-    Ok(out)
+    Ok(out as u64)
 }

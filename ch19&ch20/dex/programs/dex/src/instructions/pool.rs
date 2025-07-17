@@ -159,10 +159,10 @@ pub fn initialize_pool(
     transfer(cpi_ctx_y, initial_amount_y)?;
 
     // 初始化用户的 lp
-    let lp_amount = calculate_lp_amount(initial_amount_x, initial_amount_y);
+    let lp_amount = calculate_lp_amount(initial_amount_x, initial_amount_y)?;
     user_position.pool = pool.key();
     user_position.owner = payer.key();
-    user_position.lp_amount = lp_amount?;
+    user_position.lp_amount = lp_amount;
     user_position.bump = ctx.bumps.user_position;
 
     pool.total_lp_supply = lp_amount;

@@ -29,12 +29,9 @@ pub enum ErrorCode {
     #[msg("交换时输出代币数量无效")]
     SwapOutInvalidAmount,
 
-    #[msg("流动性池余额不足")]
-    InsufficientBalance
-
     #[msg("无效的TokenMint")]
-    InvalidTokenMint
+    InvalidTokenMint,
 
     #[msg("精度溢出")]
-    Overflow
+    Overflow,
 }
