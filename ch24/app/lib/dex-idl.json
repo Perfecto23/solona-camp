@@ -1,0 +1,1144 @@
+{
+  "address": "9FS4pbtwRhmQ5bVzdMdNXhrBbFjuaBiL9QMTbJupH83j",
+  "metadata": {
+    "name": "dex",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "add_liquidity",
+      "discriminator": [
+        181,
+        157,
+        89,
+        67,
+        143,
+        182,
+        52,
+        72
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "docs": [
+            "用户"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "docs": [
+            "配置账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "pool",
+          "docs": [
+            "池子账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "token_x_mint",
+          "docs": [
+            "token x的mint账户"
+          ]
+        },
+        {
+          "name": "token_y_mint",
+          "docs": [
+            "token y的mint账户"
+          ]
+        },
+        {
+          "name": "user_token_x",
+          "docs": [
+            "用户的token x账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "user_token_y",
+          "docs": [
+            "用户的token y账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "pool_token_x",
+          "docs": [
+            "池子的token x账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "pool_token_y",
+          "docs": [
+            "池子的token y账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "user_position",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  112,
+                  111,
+                  115,
+                  105,
+                  116,
+                  105,
+                  111,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pool"
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount_x",
+          "type": "u64"
+        },
+        {
+          "name": "amount_y",
+          "type": "u64"
+        },
+        {
+          "name": "min_lp_amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "claim_rewards",
+      "discriminator": [
+        4,
+        144,
+        132,
+        71,
+        116,
+        23,
+        151,
+        80
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "pool",
+          "writable": true
+        },
+        {
+          "name": "user_position",
+          "writable": true
+        },
+        {
+          "name": "user_token_x",
+          "writable": true
+        },
+        {
+          "name": "user_token_y",
+          "writable": true
+        },
+        {
+          "name": "pool_token_x",
+          "writable": true
+        },
+        {
+          "name": "pool_token_y",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize_config",
+      "discriminator": [
+        208,
+        127,
+        21,
+        1,
+        194,
+        190,
+        196,
+        70
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "authority",
+          "signer": true
+        },
+        {
+          "name": "treasury"
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "swap_fee_rate",
+          "type": "u16"
+        },
+        {
+          "name": "protocol_fee_rate",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "initialize_pool",
+      "discriminator": [
+        95,
+        180,
+        10,
+        172,
+        84,
+        174,
+        232,
+        40
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "docs": [
+            "池子的创建者"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "docs": [
+            "配置账户"
+          ],
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool",
+          "docs": [
+            "池子账户"
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "token_x_mint"
+              },
+              {
+                "kind": "account",
+                "path": "token_y_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_x_mint"
+        },
+        {
+          "name": "token_y_mint"
+        },
+        {
+          "name": "vault_x",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pool"
+              },
+              {
+                "kind": "account",
+                "path": "token_x_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_y",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pool"
+              },
+              {
+                "kind": "account",
+                "path": "token_y_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_token_x",
+          "writable": true
+        },
+        {
+          "name": "user_token_y",
+          "writable": true
+        },
+        {
+          "name": "user_position",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  112,
+                  111,
+                  115,
+                  105,
+                  116,
+                  105,
+                  111,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pool"
+              },
+              {
+                "kind": "account",
+                "path": "payer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "initial_amount_x",
+          "type": "u64"
+        },
+        {
+          "name": "initial_amount_y",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "remove_liquidity",
+      "discriminator": [
+        80,
+        85,
+        209,
+        72,
+        24,
+        206,
+        177,
+        108
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "docs": [
+            "用户"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "docs": [
+            "配置账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "pool",
+          "docs": [
+            "池子账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "token_x_mint",
+          "docs": [
+            "token x的mint账户"
+          ]
+        },
+        {
+          "name": "token_y_mint",
+          "docs": [
+            "token y的mint账户"
+          ]
+        },
+        {
+          "name": "user_token_x",
+          "docs": [
+            "用户的token x账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "user_token_y",
+          "docs": [
+            "用户的token y账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "pool_token_x",
+          "docs": [
+            "池子的token x账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "pool_token_y",
+          "docs": [
+            "池子的token y账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "user_position",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  112,
+                  111,
+                  115,
+                  105,
+                  116,
+                  105,
+                  111,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pool"
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "lp_amount",
+          "type": "u64"
+        },
+        {
+          "name": "min_amount_x",
+          "type": "u64"
+        },
+        {
+          "name": "min_amount_y",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "swap",
+      "discriminator": [
+        248,
+        198,
+        158,
+        145,
+        225,
+        117,
+        135,
+        200
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "docs": [
+            "交易用户"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "docs": [
+            "配置账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "pool",
+          "docs": [
+            "池子账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "input_mint",
+          "docs": [
+            "输入的token的账户"
+          ]
+        },
+        {
+          "name": "out_mint",
+          "docs": [
+            "输出的token的账户"
+          ]
+        },
+        {
+          "name": "user_token_input",
+          "docs": [
+            "输入的用户的token账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "user_token_out",
+          "docs": [
+            "输出的用户的token账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "pool_token_input",
+          "docs": [
+            "输入的池子的token账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "pool_token_out",
+          "docs": [
+            "输出的池子的token账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "treasury",
+          "docs": [
+            "协议收款账户"
+          ],
+          "writable": true
+        },
+        {
+          "name": "treasury_token_output",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount_in",
+          "type": "u64"
+        },
+        {
+          "name": "min_amount_out",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "update_authority",
+      "discriminator": [
+        32,
+        46,
+        64,
+        28,
+        149,
+        75,
+        243,
+        88
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "new_authority",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "update_config_basic",
+      "discriminator": [
+        96,
+        39,
+        53,
+        91,
+        81,
+        215,
+        119,
+        78
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "swap_fee_rate",
+          "type": "u16"
+        },
+        {
+          "name": "protocol_fee_rate",
+          "type": "u16"
+        },
+        {
+          "name": "is_paused",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "update_treasury",
+      "discriminator": [
+        60,
+        16,
+        243,
+        66,
+        96,
+        59,
+        254,
+        131
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "new_treasury"
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Config",
+      "discriminator": [
+        155,
+        12,
+        170,
+        224,
+        30,
+        250,
+        204,
+        130
+      ]
+    },
+    {
+      "name": "Pool",
+      "discriminator": [
+        241,
+        154,
+        109,
+        4,
+        17,
+        177,
+        109,
+        188
+      ]
+    },
+    {
+      "name": "UserPosition",
+      "discriminator": [
+        251,
+        248,
+        209,
+        245,
+        83,
+        234,
+        17,
+        27
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "SwapFeeRateTooHigh",
+      "msg": "交易费超过最大允许范围"
+    },
+    {
+      "code": 6001,
+      "name": "ProtocalFeeRateTooHigh",
+      "msg": "协议费超过最大允许范围"
+    },
+    {
+      "code": 6002,
+      "name": "Unauthorized",
+      "msg": "无权限操作"
+    },
+    {
+      "code": 6003,
+      "name": "IsPaused",
+      "msg": "协议已暂停"
+    },
+    {
+      "code": 6004,
+      "name": "InvalidMint",
+      "msg": "代币 mint 地址无效"
+    },
+    {
+      "code": 6005,
+      "name": "InvalidAmount",
+      "msg": "代币数量无效"
+    },
+    {
+      "code": 6006,
+      "name": "InsufficientBalance",
+      "msg": "余额不足"
+    },
+    {
+      "code": 6007,
+      "name": "SwapInputInvalidAmount",
+      "msg": "交换时输入代币数量无效"
+    },
+    {
+      "code": 6008,
+      "name": "SwapOutInvalidAmount",
+      "msg": "交换时输出代币数量无效"
+    },
+    {
+      "code": 6009,
+      "name": "InvalidTokenMint",
+      "msg": "无效的TokenMint"
+    },
+    {
+      "code": 6010,
+      "name": "Overflow",
+      "msg": "精度溢出"
+    },
+    {
+      "code": 6011,
+      "name": "InvalidTreasury",
+      "msg": "无效的协议收款账户"
+    },
+    {
+      "code": 6012,
+      "name": "InvalidTreasuryTokenAccount",
+      "msg": "无效的协议收款账户Token账户"
+    },
+    {
+      "code": 6013,
+      "name": "InsufficientOutputAmount",
+      "msg": "流动性池余额不足"
+    }
+  ],
+  "types": [
+    {
+      "name": "Config",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "docs": [
+              "管理员账户地址"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "treasury",
+            "docs": [
+              "协议费收款账户地址"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "swap_fee_rate",
+            "docs": [
+              "手续费率 万分比"
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "protocol_fee_rate",
+            "docs": [
+              "协议费率 百分比"
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "is_paused",
+            "docs": [
+              "是否暂停"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "随机数"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Pool",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "token_x_mint",
+            "docs": [
+              "第一个代币的 mint 地址"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "token_y_mint",
+            "docs": [
+              "第二个代币的 mint 地址"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "vault_x",
+            "docs": [
+              "池子的第一个代币的持币地址"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "vault_y",
+            "docs": [
+              "池子的第二个代币的持币地址"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "total_lp_supply",
+            "docs": [
+              "池子的LP总量"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "x_reward_amount",
+            "docs": [
+              "x奖励的累计值"
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "y_reward_amount",
+            "docs": [
+              "y奖励的累计值"
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "随机数"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserPosition",
+      "docs": [
+        "用户在池子中提供 LP 的仓位"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "pool",
+            "docs": [
+              "池子的地址"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "owner",
+            "docs": [
+              "用户的地址"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "lp_amount",
+            "docs": [
+              "lp 数量"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "last_x_reward_amount",
+            "docs": [
+              "用户上次领取x奖励的累计值"
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "last_y_reward_amount",
+            "docs": [
+              "用户上次领取y奖励的累计值"
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "pending_x_reward_amount",
+            "docs": [
+              "用户当前待领取的x奖励"
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "pending_y_reward_amount",
+            "docs": [
+              "用户当前待领取的y奖励"
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA 种子"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "constants": [
+    {
+      "name": "CONFIG_SEED",
+      "type": "bytes",
+      "value": "[99, 111, 110, 102, 105, 103]"
+    },
+    {
+      "name": "POOL_SEED",
+      "type": "bytes",
+      "value": "[112, 111, 111, 108]"
+    },
+    {
+      "name": "USER_POSITION_SEED",
+      "type": "bytes",
+      "value": "[117, 115, 101, 114, 95, 112, 111, 115, 105, 116, 105, 111, 110]"
+    },
+    {
+      "name": "VAULT_SEED",
+      "type": "bytes",
+      "value": "[118, 97, 117, 108, 116]"
+    }
+  ]
+}
